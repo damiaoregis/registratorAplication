@@ -1,15 +1,63 @@
 import com.opensymphony.xwork2.ActionSupport;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegisterAction extends ActionSupport {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7744515304331075379L;
 	private String firstName;
 	private String lastName; 
 	private String gender;
 	private Integer age;
 	private String email;
+	private String address;
+	private String country;
+	private String selectedColor;
+    private List<String> colors; 
+	private Boolean subscription;
+	private List<String> hobbies;
+	private String seletectedHobbies;
+	private List<Product> products;
 	
+	public String initializeFormField() {
+		initializeHobbies();
+		initializeColors();
+		initializeProducts();
+		return "input";
+    }
+	public void initializeHobbies() {
+		hobbies = new ArrayList<String>();
+        hobbies.add("Reading");
+        hobbies.add("Swimming");
+        hobbies.add("Gardening");
+		hobbies.add("Cooking");
+    }
+	
+	public void initializeColors() {
+		colors = new ArrayList<String>();
+		colors.add("Red");
+		colors.add("Blue");
+		colors.add("Green");
+		colors.add("Yellow");
+		colors.add("black");
+    }
+
+	public void initializeProducts() {
+		products = new ArrayList<Product>();
+        products.add(new Product(1, "Product 1", 100));
+        products.add(new Product(2, "Product 2", 200));
+        products.add(new Product(3, "Product 3", 300));
+    }
 	@Override
 	public String execute(){
 		// TODO Auto-generated method stub
+		if (subscription == true) {
+			System.out.println("Subscription confirmed.");
+        } else {
+			System.out.println("Subscription not confirmed.");
+		}
 		return SUCCESS;
 	}
 	
@@ -53,6 +101,65 @@ public class RegisterAction extends ActionSupport {
 		this.email = email;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public List<String> getColors() {
+		return colors;
+	}
+	
+
+	public void setColors(List<String> colors) {
+		this.colors = colors;
+	}
+	
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String getSelectedColor() {
+		return selectedColor;
+	}
+
+	public void setSelectedColor(String selectedColor) {
+		this.selectedColor = selectedColor;
+	}
+
+	public void setSubscription(Boolean subscription){
+		this.subscription = subscription;
+	}
+	public Boolean getSubscription(){
+		return subscription;
+	}
+
+	public List<String> getHobbies() {
+		return hobbies;
+	}
+
+	public void setHobbies(List<String> hobbies) {
+		this.hobbies = hobbies;
+	}
+	public String getSeletectedHobbies() {
+		return seletectedHobbies;
+	}
+	public void setSeletectedHobbies(String seletectedHobbies) {
+		this.seletectedHobbies = seletectedHobbies;
+	}
+	
+	public List<Product> getProducts() {
+        return products;
+    }
+	public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+	
 	/*public void validate() {
 		if (firstName == null || firstName.equals("") || firstName.isEmpty()) {
 			addFieldError("firstName", "First Name is required");
